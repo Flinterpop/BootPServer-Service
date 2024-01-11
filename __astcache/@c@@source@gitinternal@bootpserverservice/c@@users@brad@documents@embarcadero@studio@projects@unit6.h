@@ -1,0 +1,32 @@
+﻿//---------------------------------------------------------------------------
+#ifndef Unit6H
+#define Unit6H
+//---------------------------------------------------------------------------
+#include <System.SysUtils.hpp>
+#include <System.Classes.hpp>
+#include <Vcl.SvcMgr.hpp>
+#include <vcl.h>
+#include <IdBaseComponent.hpp>
+#include <IdComponent.hpp>
+#include <IdGlobal.hpp>
+#include <IdSocketHandle.hpp>
+#include <IdUDPBase.hpp>
+#include <IdUDPServer.hpp>
+//---------------------------------------------------------------------------
+class TService6 : public TService
+{
+__published:    // IDE-managed Components
+	TIdUDPServer *IdUDPServer1;
+	void __fastcall IdUDPServer1UDPRead(TIdUDPListenerThread *AThread, const TIdBytes AData,
+          TIdSocketHandle *ABinding);
+private:        // User declarations
+public:         // User declarations
+	__fastcall TService6(TComponent* Owner);
+	TServiceController __fastcall GetServiceController(void);
+
+	friend void __stdcall ServiceController(unsigned CtrlCode);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TService6 *Service6;
+//---------------------------------------------------------------------------
+#endif
