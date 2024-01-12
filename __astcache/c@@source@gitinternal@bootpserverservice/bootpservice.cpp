@@ -1,8 +1,8 @@
-﻿#include <System.SysUtils.hpp>
+#include <System.SysUtils.hpp>
 #include <Vcl.SvcMgr.hpp>
 #pragma hdrstop
 #include <tchar.h>
-USEFORM("Unit6.cpp", Service6); /* TService: File Type */
+USEFORM("Unit6.cpp", BootP); /* TService: File Type */
 //---------------------------------------------------------------------------
 #define Application Svcmgr::Application
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
@@ -27,7 +27,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		{
 			Application->Initialize();
 		}
-		Application->CreateForm(__classid(TService6), &Service6);
+		Application->CreateForm(__classid(TBootP), &BootP);
 		Application->Run();
 	}
 	catch (Exception &exception)

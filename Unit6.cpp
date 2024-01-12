@@ -151,6 +151,11 @@ void TBootP::SendBootPResponse()
 		response.ClientIP[2]=16;
 		response.ClientIP[3]=7;
 
+		response.GatewayIP[0] = 24;
+		response.GatewayIP[1] = 1;
+		response.GatewayIP[2] = 1;
+		response.GatewayIP[3] = 1;
+
 		response.CHAddr[0]=0x00;
 		response.CHAddr[1]=0x80;
 		response.CHAddr[2]=0x8E;

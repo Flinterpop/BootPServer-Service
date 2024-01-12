@@ -8,6 +8,8 @@
 #include <fstream>
 #include <string>
 
+#include <System.Win.Registry.hpp>
+
 
 
 TBootP *BootP;
@@ -24,6 +26,8 @@ __fastcall TBootP::TBootP(TComponent* Owner)
 		 ofs << "Starting BootP Service" << std::endl;
 		 ofs.close();
 	 }
+
+
 
 
 }
@@ -147,6 +151,11 @@ void TBootP::SendBootPResponse()
 		response.ClientIP[2]=16;
 		response.ClientIP[3]=7;
 
+		response.GatewayIP[0] = 24;
+		response.GatewayIP[1] = 1;
+		response.GatewayIP[2] = 1;
+		response.GatewayIP[3] = 1;
+
 		response.CHAddr[0]=0x00;
 		response.CHAddr[1]=0x80;
 		response.CHAddr[2]=0x8E;
@@ -247,4 +256,51 @@ void  TBootP::pme(const char* fmt, ...)
 }
 
 
+
+void __fastcall TBootP::ServiceStop(TService *Sender, bool &Stopped)
+{
+  	 std::ofstream ofs;
+	 ofs.open( "C:\\bootpService.log",std::ios::out | std::ios::app | std::ios::ate );  // set file cursor at the end
+
+	 if(ofs)
+	 {
+		 ofs << "Stopping BootP Service" << std::endl;
+		 ofs.close();
+	 }
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TBootP::ServiceAfterInstall(TService *Sender)
+{
+
+		TRegistry* reg = new TRegistry(KEY_READ);
+	reg->RootKey = HKEY_LOCAL_MACHINE;
+
+
+	if(!reg->KeyExists("SYSTEMCurrentControlSetServices\\BootP\\"))
+	{
+		pme("Key not found! Created now.");
+	}
+	else	pme("Key BooP found!");
+
+
+
+//	TRegistry  Reg;
+  //	Reg.Create(KEY_READ or KEY_WRITE);
+
+	/*
+  try
+	Reg.RootKey = HKEY_LOCAL_MACHINE;
+	if Reg.OpenKey('SYSTEMCurrentControlSetServices' + name, false) then
+	begin
+	  Reg.WriteString('Description', 'Blogs.Embarcadero.com');
+	  Reg.CloseKey;
+	end;
+  finally
+	Reg.Free;
+      */
+
+}
+//---------------------------------------------------------------------------
 

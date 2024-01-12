@@ -66,6 +66,8 @@ __published:    // IDE-managed Components
 	TIdUDPServer *IdUDPServer1;
 	void __fastcall IdUDPServer1UDPRead(TIdUDPListenerThread *AThread, const TIdBytes AData,
           TIdSocketHandle *ABinding);
+	void __fastcall ServiceStop(TService *Sender, bool &Stopped);
+	void __fastcall ServiceAfterInstall(TService *Sender);
 private:        // User declarations
 public:         // User declarations
 	__fastcall TBootP(TComponent* Owner);

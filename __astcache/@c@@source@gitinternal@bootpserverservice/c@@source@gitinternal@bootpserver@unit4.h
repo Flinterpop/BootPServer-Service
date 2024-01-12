@@ -83,6 +83,9 @@ __published:	// IDE-managed Components
 	TButton *BN_Quit;
 	TIdUDPServer *IdUDPServer1;
 	TEdit *TE_IPtoSend;
+	TEdit *TE_Gateway;
+	TLabel *Label1;
+	TLabel *Label2;
 	void __fastcall BN_testClick(TObject *Sender);
 	void __fastcall BN_QuitClick(TObject *Sender);
 	void __fastcall IdUDPServer1UDPRead(TIdUDPListenerThread *AThread, const TIdBytes AData,

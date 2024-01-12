@@ -13,6 +13,9 @@ __fastcall TBootPProxy::TBootPProxy(TComponent* Owner)
 	: TForm(Owner)
 {
 	IdUDPServer1->Active =true;
+
+        pme("Sizeof (BootPMagic) : %d",sizeof(BootPMagic));
+
 }
 //---------------------------------------------------------------------------
 
@@ -228,10 +231,20 @@ void __fastcall TBootPProxy::SendBootPResponse()
 	response.ServerIP[2]=1;
 	response.ServerIP[3]=111;
 
-	response.GatewayIP[0]=0;
-	response.GatewayIP[1]=0;
-	response.GatewayIP[2]=0;
-	response.GatewayIP[3]=0;
+	str = TE_Gateway->Text.c_str()	;
+	ret = wcstombs ( buffer, str, sizeof(buffer) );
+	inet_pton(AF_INET, buffer, &(sa.sin_addr));
+
+	response.GatewayIP[0]= sa.sin_addr.S_un.S_un_b.s_b1;
+	response.GatewayIP[1]= sa.sin_addr.S_un.S_un_b.s_b2;
+	response.GatewayIP[2]= sa.sin_addr.S_un.S_un_b.s_b3;
+	response.GatewayIP[3]= sa.sin_addr.S_un.S_un_b.s_b4;
+
+
+	//response.GatewayIP[0]=24;
+	//response.GatewayIP[1]=1;
+	//response.GatewayIP[2]=1;
+	//response.GatewayIP[3]=1;
 
 
 
