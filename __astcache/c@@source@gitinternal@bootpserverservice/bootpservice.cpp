@@ -1,4 +1,4 @@
-#include <System.SysUtils.hpp>
+﻿#include <System.SysUtils.hpp>
 #include <Vcl.SvcMgr.hpp>
 #pragma hdrstop
 #include <tchar.h>

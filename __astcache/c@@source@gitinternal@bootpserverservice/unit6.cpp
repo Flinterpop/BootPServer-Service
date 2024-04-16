@@ -177,9 +177,14 @@ void TBootP::SendBootPResponse()
 	response.YourIP[3]= sa.sin_addr.S_un.S_un_b.s_b4;
 	  */
 
-	response.YourIP[0]= 24;
-	response.YourIP[1]= 1;
-	response.YourIP[2]= 1;
+	//response.YourIP[0]= 24;
+	//response.YourIP[1]= 1;
+	//response.YourIP[2]= 1;
+	//response.YourIP[3]= 7;
+
+	response.YourIP[0]= 10;
+	response.YourIP[1]= 33;
+	response.YourIP[2]= 94;
 	response.YourIP[3]= 7;
 
 	response.ServerIP[0]=24;
@@ -187,11 +192,15 @@ void TBootP::SendBootPResponse()
 	response.ServerIP[2]=1;
 	response.ServerIP[3]=112;
 
-	response.GatewayIP[0]=0;
-	response.GatewayIP[1]=0;
-	response.GatewayIP[2]=0;
-	response.GatewayIP[3]=0;
+	//response.GatewayIP[0]=0;
+	//response.GatewayIP[1]=0;
+	//response.GatewayIP[2]=0;
+	//response.GatewayIP[3]=0;
 
+	response.GatewayIP[0]=10;
+	response.GatewayIP[1]=33;
+	response.GatewayIP[2]=94;
+	response.GatewayIP[3]=1;
 
 
 	//response.ServerName[64];
@@ -274,7 +283,7 @@ void __fastcall TBootP::ServiceStop(TService *Sender, bool &Stopped)
 void __fastcall TBootP::ServiceAfterInstall(TService *Sender)
 {
 
-		TRegistry* reg = new TRegistry(KEY_READ);
+	TRegistry* reg = new TRegistry(KEY_READ);
 	reg->RootKey = HKEY_LOCAL_MACHINE;
 
 
